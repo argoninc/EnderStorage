@@ -6,7 +6,11 @@ import java.util.Base64;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Effect;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -32,6 +36,7 @@ public class EnderChestListener implements Listener {
 
 		if (e.hasBlock() && e.getMaterial() != null && e.getAction().equals(Action.RIGHT_CLICK_BLOCK)) {
 			Block blocoClicado = e.getClickedBlock();
+			
 			Material materialClicado = blocoClicado.getType();
 			
 			if (materialClicado.equals(Material.ENDER_CHEST)) {
@@ -41,11 +46,16 @@ public class EnderChestListener implements Listener {
 				Inventory inv = Bukkit.createInventory(player, getSize(player.getUniqueId().toString()), title);
 
 				initializeItems(inv, player.getUniqueId().toString());
-
+				
+				playSound(player, Sound.BLOCK_ENDER_CHEST_OPEN);
 				player.openInventory(inv);
 
 			}
 		}
+	}
+	
+	private void playSound(Player p, Sound s) {
+		p.playSound(p.getLocation(), s, 1F, 1F);
 	}
 	
 	private int getSize(String uuid) {
@@ -65,6 +75,7 @@ public class EnderChestListener implements Listener {
 		
 		if(titleEvent.equals(title)) {
 			
+			playSound(player, Sound.BLOCK_ENDER_CHEST_CLOSE);
 			saveToFile(player.getUniqueId().toString(), newFile("argoninc/inv.yml"), inventory.getContents());			
 		}
 		
