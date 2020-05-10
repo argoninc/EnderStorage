@@ -51,12 +51,6 @@
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
-					
-					
-					<!--  TROCAR  -->
-					
-					
-					<outputDirectory>A:\Desktop\Server guerra\plugins</outputDirectory>
 				</configuration>
 				<executions>
 					<execution>
