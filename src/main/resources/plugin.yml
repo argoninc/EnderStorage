@@ -2,6 +2,6 @@
 name: EnderStorage
 #Trocar para a classe que extends JavaPlugin
 main: com.github.argoninc.ender.Principal
-version: 1.0.0
+version: 1.0.1
 api-version: 1.15
 commands:
